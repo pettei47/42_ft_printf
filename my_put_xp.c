@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   my_put_xp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkitagaw <tkitagaw@student.42.jp>          +#+  +:+       +#+        */
+/*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 21:41:31 by tkitagaw          #+#    #+#             */
-/*   Updated: 2020/08/21 01:12:53 by tkitagaw         ###   ########.fr       */
+/*   Updated: 2021/02/06 14:38:02 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static char	*my_itoa_hex(unsigned long x)
 {

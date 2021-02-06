@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   my_set_width_prec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkitagaw <tkitagaw@student.42.jp>          +#+  +:+       +#+        */
+/*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 18:15:02 by tkitagaw          #+#    #+#             */
-/*   Updated: 2020/08/20 13:19:28 by tkitagaw         ###   ########.fr       */
+/*   Updated: 2021/02/06 14:38:08 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	my_set_width(const char **fmt, t_flag *f, va_list ap)
 {

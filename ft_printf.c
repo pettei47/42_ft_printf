@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkitagaw <tkitagaw@student.42.jp>          +#+  +:+       +#+        */
+/*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 14:39:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2020/08/23 00:09:41 by tkitagaw         ###   ########.fr       */
+/*   Updated: 2021/02/06 14:37:35 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static void	my_flag_reset(t_flag *f)
 {

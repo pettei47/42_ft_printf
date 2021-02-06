@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   my_put_cs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkitagaw <tkitagaw@student.42.jp>          +#+  +:+       +#+        */
+/*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 18:46:45 by tkitagaw          #+#    #+#             */
-/*   Updated: 2020/08/19 22:37:11 by tkitagaw         ###   ########.fr       */
+/*   Updated: 2021/02/06 14:37:25 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 char	*ft_strchr(const char *s, int c)
 {

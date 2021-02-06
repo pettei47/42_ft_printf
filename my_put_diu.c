@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   my_put_diu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkitagaw <tkitagaw@student.42.jp>          +#+  +:+       +#+        */
+/*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 19:57:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2020/08/20 00:15:54 by tkitagaw         ###   ########.fr       */
+/*   Updated: 2021/02/06 14:37:49 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	digit(long long a)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkitagaw <tkitagaw@student.42.jp>          +#+  +:+       +#+         #
+#    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/30 17:42:38 by tkitagaw          #+#    #+#              #
-#    Updated: 2020/08/20 12:28:01 by tkitagaw         ###   ########.fr        #
+#    Updated: 2021/02/06 14:36:49 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS	=	ft_printf.c my_set_width_prec.c my_put_cs.c \
 OBJS	=	$(SRCS:.c=.o)
 
 .c.o :
-	$(CC) $(CFLGS) -c $< -o $@ -I libftprintf.h
+	$(CC) $(CFLGS) -c $< -o $@ -I ft_printf.h
 
 all : $(NAME)
 
