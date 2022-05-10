@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 14:39:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/10 23:39:23 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/10 23:58:40 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	my_flag_reset(t_flag *f)
 	f->sharp = 0;
 	f->plus = 0;
 	f->space = 0;
+	f->fill = ' ';
 }
 
 static int	my_set_conv(char *fmt, t_flag *f)

@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 18:46:45 by tkitagaw          #+#    #+#             */
-/*   Updated: 2021/02/06 14:37:25 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:00:15 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-int		ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -38,33 +38,31 @@ int		ft_strlen(char *s)
 	return (i);
 }
 
-int		my_put_c(t_flag *f, va_list ap)
+int	my_put_c(t_flag *f, va_list ap)
 {
 	char	c;
-	char	fill;
 	int		i;
 
 	i = 0;
-	c = f->conv == '%' ? '%' : va_arg(ap, int);
+	c = '%';
+	if (f->conv != '%')
+		c = va_arg(ap, int);
 	if (f->width < 1)
 		f->width = 1;
-	fill = f->zero == 1 ? '0' : ' ';
+	if (f->zero == 1)
+		f->fill = '0';
 	if (f->minus == 1)
 		write(1, &c, 1);
-	while (f->width - i > 1)
-	{
-		write(1, &fill, 1);
-		i++;
-	}
+	while (f->width - i++ > 1)
+		write(1, &(f->fill), 1);
 	if (f->minus == 0)
 		write(1, &c, 1);
 	return (f->width);
 }
 
-int		my_put_s(t_flag *f, va_list ap)
+int	my_put_s(t_flag *f, va_list ap)
 {
 	char	*s;
-	char	fill;
 	int		len;
 	int		i;
 
@@ -72,18 +70,18 @@ int		my_put_s(t_flag *f, va_list ap)
 	if (s == NULL)
 		s = "(null)";
 	len = 0;
-	fill = f->zero == 1 ? '0' : ' ';
+	if (f->zero == 1)
+		f->fill = '0';
 	i = 0;
 	while (s[len] && (len < f->prc_sz || f->prec == 0))
 		len++;
 	if (f->minus == 1)
 		write(1, s, len);
-	while (f->width - i > len)
-	{
-		write(1, &fill, 1);
-		i++;
-	}
+	while (f->width - i++ > len)
+		write(1, &(f->fill), 1);
 	if (f->minus == 0)
 		write(1, s, len);
-	return (f->width > len ? f->width : len);
+	if (f->width > len)
+		len = f->width;
+	return (len);
 }
