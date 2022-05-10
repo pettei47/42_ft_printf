@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 19:57:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 00:02:44 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 01:25:57 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,25 @@ static char	*my_itoa(long long d)
 	return (a);
 }
 
-int	my_put_diu(t_flag *f, va_list ap)
+int	my_put_diu(t_flag *f, va_list ap, int zero)
 {
 	long	d;
 	char	*s;
-	int		zero;
 
-	zero = 0;
 	if (f->conv == 'u')
 		d = (long)va_arg(ap, unsigned int);
 	else
 		d = (long)va_arg(ap, int);
-	if (f->zero == 1 && d < 0)
+	if ((f->zero == 1 && d < 0) || \
+		(f->space_plus != '\0' && d >= 0 && f->conv != 'u'))
 	{
-		write(1, "-", 1);
-		d *= -1;
+		if (d < 0)
+		{
+			write(1, "-", 1);
+			d *= -1;
+		}
+		else
+			write(1, &(f->space_plus), 1);
 		f->width -= 1;
 		zero = 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 13:30:01 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 01:09:51 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 01:25:23 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ typedef struct s_flag
 	int		prec;
 	int		prc_sz;
 	int		sharp;
-	int		plus;
-	int		space;
+	char	space_plus;
 	char	fill;
 	char	*x;
 }				t_flag;
@@ -39,7 +38,7 @@ void			my_set_prec(const char **fmt, t_flag *f, va_list ap);
 void			my_set_width(const char **fmt, t_flag *f, va_list ap);
 int				my_put_c(t_flag *f, va_list ap);
 int				my_put_s(t_flag *f, va_list ap);
-int				my_put_diu(t_flag *f, va_list ap);
+int				my_put_diu(t_flag *f, va_list ap, int zero);
 int				my_put_x(t_flag *f, va_list ap);
 int				my_put_p(t_flag *f, va_list ap);
 int				my_putnbr(char *s, t_flag *f, int l);

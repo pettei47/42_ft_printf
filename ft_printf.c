@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 14:39:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 01:10:10 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 01:25:29 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static void	my_flag_reset(t_flag *f)
 	f->prec = 0;
 	f->prc_sz = 0;
 	f->sharp = 0;
-	f->plus = 0;
-	f->space = 0;
+	f->space_plus = '\0';
 	f->fill = ' ';
 	f->x = "0x";
 }
@@ -54,10 +53,8 @@ static void	my_flag_chk(char **fmt, t_flag *f, va_list ap)
 			f->zero = 1;
 		else if (**fmt == '#')
 			f->sharp = 1;
-		else if (**fmt == ' ')
-			f->space = 1;
-		else if (**fmt == '+')
-			f->plus = 1;
+		else if (ft_strchr(" +", **fmt))
+			f->space_plus = **fmt;
 		else if (((47 < **fmt && **fmt < 58) || **fmt == '*') && f->prec < 1)
 			my_set_width((const char **)fmt, f, ap);
 		else if (**fmt == '.')
@@ -88,7 +85,7 @@ static int	my_chk_conv(char **fmt, t_flag *f, va_list ap, int *pc)
 	else if (f->conv == 'p' || (ft_strchr("xX", f->conv) && f->sharp == 1))
 		ret = my_put_p(f, ap);
 	else if (f->conv == 'd' || f->conv == 'i' || f->conv == 'u')
-		ret = my_put_diu(f, ap);
+		ret = my_put_diu(f, ap, 0);
 	else if (f->conv == 'x' || f->conv == 'X')
 		ret = my_put_x(f, ap);
 	*pc = ret;
