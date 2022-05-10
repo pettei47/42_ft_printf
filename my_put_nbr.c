@@ -6,19 +6,18 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 00:13:44 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/10 22:41:52 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:10:39 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*my_prcnbr(char *s, int l, int len)
+char	*my_prcnbr(char *s, int l, int len, int i)
 {
 	char	*n;
-	int		i;
 
-	i = 0;
-	if (!(n = (char *)malloc(sizeof(char) * (len + 1))))
+	n = (char *)malloc(sizeof(char) * (len + 1));
+	if (!n)
 		return (s);
 	if (s[0] == '-')
 	{
@@ -41,29 +40,31 @@ char	*my_prcnbr(char *s, int l, int len)
 	return (n);
 }
 
-int		my_putnbr(char *s, t_flag *f, int l)
+int	my_putnbr(char *s, t_flag *f, int l)
 {
-	char	fill;
 	int		len;
 	int		i;
 
-	fill = f->zero == 1 ? '0' : ' ';
+	if (f->zero == 1)
+		f->fill = '0';
 	i = 0;
+	len = l;
 	if (f->prec == 1 && l <= f->prc_sz && s[0] == '-')
 		len = f->prc_sz + 1;
 	else if (f->prec == 1 && l - 1 < f->prc_sz && s[0] != '-')
 		len = f->prc_sz;
-	else
-		len = l;
-	len = (f->prc_sz == 0 && f->prec == 1 && s[0] == '0') ? 0 : len;
+	if (f->prc_sz == 0 && f->prec == 1 && s[0] == '0')
+		len = 0;
 	if (f->prec == 1 && l != len)
-		s = my_prcnbr(s, l, len);
+		s = my_prcnbr(s, l, len, 0);
 	if (f->minus == 1)
 		write(1, s, len);
 	while (f->width - i++ > len)
-		write(1, &fill, 1);
+		write(1, &(f->fill), 1);
 	if (f->minus == 0)
 		write(1, s, len);
 	free(s);
-	return (f->width > len ? f->width : len);
+	if (f->width > len)
+		len = f->width;
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 13:30:01 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/10 23:58:27 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:10:14 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int				my_put_p(t_flag *f, va_list ap);
 int				my_putnbr(char *s, t_flag *f, int l);
 char			*ft_strchr(const char *s, int c);
 int				ft_strlen(char *s);
-char			*my_prcnbr(char *s, int l, int len);
+char			*my_prcnbr(char *s, int l, int len, int i);
 
 #endif

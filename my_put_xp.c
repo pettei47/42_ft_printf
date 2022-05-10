@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 21:41:31 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/10 23:59:16 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:10:18 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	my_putptr(char *s, t_flag *f, int l)
 	if (l < f->prc_sz && f->prec == 1)
 		len = f->prc_sz;
 	if (l < f->prc_sz && f->prec == 1)
-		s = my_prcnbr(s, l, len);
+		s = my_prcnbr(s, l, len, 0);
 	if (f->minus == 1)
 		write(1, "0x", 2);
 	if (f->minus == 1)

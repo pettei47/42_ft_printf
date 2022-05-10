@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 19:57:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2021/02/06 14:37:49 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 00:02:44 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static char	*my_itoa(long long d)
 
 	dig = digit(d);
 	m = 0;
-	if (!(a = (char *)malloc(sizeof(char) * dig + 1)))
+	a = (char *)malloc(sizeof(char) * dig + 1);
+	if (!a)
 		return (NULL);
 	i = 1;
 	if (d < 0)
@@ -62,7 +63,7 @@ static char	*my_itoa(long long d)
 	return (a);
 }
 
-int			my_put_diu(t_flag *f, va_list ap)
+int	my_put_diu(t_flag *f, va_list ap)
 {
 	long	d;
 	char	*s;
@@ -80,7 +81,8 @@ int			my_put_diu(t_flag *f, va_list ap)
 		f->width -= 1;
 		zero = 1;
 	}
-	if (!(s = my_itoa((long long)d)))
+	s = my_itoa((long long)d);
+	if (!s)
 		return (0);
 	return (my_putnbr(s, f, ft_strlen(s)) + zero);
 }
