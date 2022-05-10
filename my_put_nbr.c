@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 00:13:44 by tkitagaw          #+#    #+#             */
-/*   Updated: 2021/02/06 14:37:56 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/10 22:41:52 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*my_prcnbr(char *s, int l, int len)
 		i++;
 	}
 	n[i] = '\0';
-	SAFE_FREE(s);
+	free(s);
 	return (n);
 }
 
@@ -64,6 +64,6 @@ int		my_putnbr(char *s, t_flag *f, int l)
 		write(1, &fill, 1);
 	if (f->minus == 0)
 		write(1, s, len);
-	SAFE_FREE(s);
+	free(s);
 	return (f->width > len ? f->width : len);
 }

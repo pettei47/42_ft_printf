@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/30 17:42:38 by tkitagaw          #+#    #+#              #
-#    Updated: 2021/02/06 14:36:49 by teppei           ###   ########.fr        #
+#    Updated: 2022/05/10 23:29:12 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CFLGS	=	-Wall -Wextra -Werror
 LIBS	=	ar -rc
 NAME	=	libftprintf.a
 SRCS	=	ft_printf.c my_set_width_prec.c my_put_cs.c \
-			my_put_diu.c my_put_xp.c my_put_nbr.c
+			my_put_diu.c my_put_xp.c my_put_nbr.c \
+			
 OBJS	=	$(SRCS:.c=.o)
 
 .c.o :
@@ -34,4 +35,6 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all clean fclean re
+bonus: all
+
+.PHONY: all clean fclean re bonus

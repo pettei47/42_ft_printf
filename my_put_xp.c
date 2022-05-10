@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 21:41:31 by tkitagaw          #+#    #+#             */
-/*   Updated: 2021/02/06 14:38:02 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/10 22:42:03 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	my_putptr(char *s, t_flag *f, int l)
 		write(1, "0x", 2);
 		write(1, s, len);
 	}
-	SAFE_FREE(s);
+	free(s);
 	return (f->width > (len + 2) ? f->width : (len + 2));
 }
 

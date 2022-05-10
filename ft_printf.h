@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 13:30:01 by tkitagaw          #+#    #+#             */
-/*   Updated: 2021/02/06 14:38:40 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/10 23:29:06 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# define SAFE_FREE(ptr) { free(ptr); ptr = NULL; }
-
-typedef struct	s_flag
+typedef struct s_flag
 {
 	char	conv;
 	int		minus;
@@ -28,6 +26,9 @@ typedef struct	s_flag
 	int		width;
 	int		prec;
 	int		prc_sz;
+	int		sharp;
+	int		plus;
+	int		space;
 }				t_flag;
 
 int				ft_printf(const char *fmt, ...);

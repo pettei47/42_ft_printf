@@ -1,1 +1,8 @@
-*.o
+*
+
+!Makefile
+!*.c
+!*.h
+!.gitignore
+
+main.c

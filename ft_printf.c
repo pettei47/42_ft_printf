@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 14:39:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2021/02/06 14:37:35 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/10 23:39:23 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,9 @@ static void	my_flag_reset(t_flag *f)
 	f->width = 0;
 	f->prec = 0;
 	f->prc_sz = 0;
-}
-
-static void	my_flag_chk(char **fmt, t_flag *f, va_list ap)
-{
-	while (**fmt != f->conv)
-	{
-		if (**fmt == '-')
-		{
-			f->minus = 1;
-			*fmt += 1;
-		}
-		else if (**fmt == '0' && f->prec == 0)
-		{
-			f->zero = 1;
-			*fmt += 1;
-		}
-		else if (((47 < **fmt && **fmt < 58) || **fmt == '*') && f->prec < 1)
-			my_set_width((const char **)fmt, f, ap);
-		else if (**fmt == '.')
-		{
-			f->prec = 1;
-			my_set_prec((const char **)fmt, f, ap);
-		}
-		else
-			*fmt += 1;
-	}
-	*fmt += 1;
-	f->zero = f->minus == 1 ? 0 : f->zero;
-	f->zero = (f->prec == 1 && (ft_strchr("pdiuixX", f->conv))) ? 0 : f->zero;
+	f->sharp = 0;
+	f->plus = 0;
+	f->space = 0;
 }
 
 static int	my_set_conv(char *fmt, t_flag *f)
@@ -68,26 +42,58 @@ static int	my_set_conv(char *fmt, t_flag *f)
 	return (0);
 }
 
-static int	my_chk_conv(char **fmt, t_flag *f, va_list ap)
+static void	my_flag_chk(char **fmt, t_flag *f, va_list ap)
 {
+	while (**fmt != f->conv)
+	{
+		if (**fmt == '-')
+			f->minus = 1;
+		else if (**fmt == '0' && f->prec == 0)
+			f->zero = 1;
+		else if (**fmt == '#')
+			f->sharp = 1;
+		else if (**fmt == ' ')
+			f->space = 1;
+		else if (**fmt == '+')
+			f->plus = 1;
+		else if (((47 < **fmt && **fmt < 58) || **fmt == '*') && f->prec < 1)
+			my_set_width((const char **)fmt, f, ap);
+		else if (**fmt == '.')
+			my_set_prec((const char **)fmt, f, ap);
+		else
+			*fmt += 1;
+		if ((**fmt == '0' && f->prec == 0) || ft_strchr("-# +", **fmt))
+			*fmt += 1;
+	}
+	*fmt += 1;
+	if (f->minus == 1 || (f->prec == 1 && ft_strchr("pdiuixX", f->conv)))
+		f->zero = 0;
+}
+
+static int	my_chk_conv(char **fmt, t_flag *f, va_list ap, int *pc)
+{
+	int	ret;
+
 	*fmt += 1;
 	if (my_set_conv(*fmt, f) == 0)
 		return (-1);
 	my_flag_chk(fmt, f, ap);
+	ret = -1;
 	if (f->conv == 'c' || f->conv == '%')
-		return (my_put_c(f, ap));
-	if (f->conv == 's')
-		return (my_put_s(f, ap));
-	if (f->conv == 'p')
-		return (my_put_p(f, ap));
-	if (f->conv == 'd' || f->conv == 'i' || f->conv == 'u')
-		return (my_put_diu(f, ap));
-	if (f->conv == 'x' || f->conv == 'X')
-		return (my_put_x(f, ap));
-	return (-1);
+		ret = my_put_c(f, ap);
+	else if (f->conv == 's')
+		ret = my_put_s(f, ap);
+	else if (f->conv == 'p')
+		ret = my_put_p(f, ap);
+	else if (f->conv == 'd' || f->conv == 'i' || f->conv == 'u')
+		ret = my_put_diu(f, ap);
+	else if (f->conv == 'x' || f->conv == 'X')
+		ret = my_put_x(f, ap);
+	*pc = ret;
+	return (ret);
 }
 
-int			ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
 	t_flag	f;
@@ -101,7 +107,7 @@ int			ft_printf(const char *fmt, ...)
 	{
 		if (*fmt == '%')
 		{
-			if ((pc = my_chk_conv((char **)&fmt, &f, ap)) < 0)
+			if (my_chk_conv((char **)&fmt, &f, ap, &pc) < 0)
 				return (ret);
 			ret += pc;
 			my_flag_reset(&f);
