@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 13:30:01 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 00:10:14 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 01:09:51 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_flag
 	int		plus;
 	int		space;
 	char	fill;
+	char	*x;
 }				t_flag;
 
 int				ft_printf(const char *fmt, ...);
