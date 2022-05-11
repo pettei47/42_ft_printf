@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 21:41:31 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 01:10:44 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/11 09:51:35 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	my_put_p(t_flag *f, va_list ap)
 		return (0);
 	if ((f->prec == 1 && f->prc_sz == 0))
 	{
-		if (f->minus == 1 || f->zero == 1)
+		if (f->minus == 1)
 			write(1, "0x", 2);
 		if (f->zero == 1)
 			i += ft_strlen(s);
