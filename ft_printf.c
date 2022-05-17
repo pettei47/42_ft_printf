@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 14:39:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 09:50:01 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/17 22:38:16 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	my_flag_reset(t_flag *f)
 	f->space_plus = '\0';
 	f->fill = ' ';
 	f->x = "0x";
+	f->err = 0;
 }
 
 static int	my_set_conv(char *fmt, t_flag *f)
@@ -63,6 +64,8 @@ static void	my_flag_chk(char **fmt, t_flag *f, va_list ap)
 			*fmt += 1;
 		if ((**fmt == '0' && f->prec == 0) || ft_strchr("-# +", **fmt))
 			*fmt += 1;
+		if (f->err < 0)
+			return ;
 	}
 	*fmt += 1;
 	if (f->minus == 1 || (f->prec == 1 && ft_strchr("pdiuixX", f->conv)))
@@ -77,6 +80,8 @@ static int	my_chk_conv(char **fmt, t_flag *f, va_list ap, int *pc)
 	if (my_set_conv(*fmt, f) == 0)
 		return (-1);
 	my_flag_chk(fmt, f, ap);
+	if (f->err < 0)
+		return (-1);
 	ret = -1;
 	if (f->conv == 'c' || f->conv == '%')
 		ret = my_put_c(f, ap);
@@ -96,26 +101,25 @@ int	ft_printf(const char *fmt, ...)
 {
 	va_list	ap;
 	t_flag	f;
-	int		ret;
+	long	ret;
 	int		pc;
 
 	va_start(ap, fmt);
 	my_flag_reset(&f);
 	ret = 0;
-	while (*fmt)
+	while (*fmt && ret < INT_MAX)
 	{
 		if (*fmt == '%')
 		{
 			if (my_chk_conv((char **)&fmt, &f, ap, &pc) < 0)
 				return (ret);
-			ret += pc;
 			my_flag_reset(&f);
 		}
 		else
-		{
-			write(1, fmt++, 1);
-			ret++;
-		}
+			pc = my_write(1, fmt++, 1);
+		ret += pc;
+		if (ret > INT_MAX)
+			return (-1);
 	}
 	va_end(ap);
 	return (ret);

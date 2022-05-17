@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 18:46:45 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 09:55:31 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/17 22:39:42 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,11 @@ int	my_put_s(t_flag *f, va_list ap)
 		write(1, s, len);
 	if (f->width > len)
 		len = f->width;
+	return (len);
+}
+
+int	my_write(int fd, const char *s, int len)
+{
+	write(fd, s, len);
 	return (len);
 }
