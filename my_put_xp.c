@@ -45,9 +45,7 @@ int	my_put_x(t_flag *f, va_list ap)
 {
 	unsigned int	x;
 	char			*s;
-	int				i;
 
-	i = 0;
 	x = va_arg(ap, unsigned int);
 	s = my_itoa_hex(x, f);
 	if (!s)
@@ -88,9 +86,7 @@ int	my_put_p(t_flag *f, va_list ap)
 {
 	unsigned long	p;
 	char			*s;
-	int				i;
 
-	i = 0;
 	p = va_arg(ap, unsigned long);
 	s = my_itoa_hex(p, f);
 	if (!s)
