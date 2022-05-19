@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/30 17:42:38 by tkitagaw          #+#    #+#              #
-#    Updated: 2022/05/10 23:29:12 by teppei           ###   ########.fr        #
+#    Updated: 2022/05/19 09:44:25 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS	=	ft_printf.c my_set_width_prec.c my_put_cs.c \
 OBJS	=	$(SRCS:.c=.o)
 
 .c.o :
-	$(CC) $(CFLGS) -c $< -o $@ -I ft_printf.h
+	$(CC) $(CFLGS) -c $< -o $@ -I./
 
 all : $(NAME)
 
