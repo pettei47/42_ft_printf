@@ -54,7 +54,7 @@ static void	my_flag_chk(char **fmt, t_flag *f, va_list ap)
 			f->zero = 1;
 		else if (**fmt == '#')
 			f->sharp = 1;
-		else if (ft_strchr(" +", **fmt))
+		else if (ft_strchr(" +", **fmt) && f->space_plus != '+')
 			f->space_plus = **fmt;
 		else if (((47 < **fmt && **fmt < 58) || **fmt == '*') && f->prec < 1)
 			my_set_width((const char **)fmt, f, ap);
