@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 14:39:48 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/17 22:38:16 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/19 09:39:03 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	ft_printf(const char *fmt, ...)
 	va_start(ap, fmt);
 	my_flag_reset(&f);
 	ret = 0;
-	while (*fmt && ret < INT_MAX)
+	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
