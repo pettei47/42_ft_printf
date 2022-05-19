@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 13:30:01 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/17 22:39:36 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/19 07:33:30 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_flag
 
 int				my_write(int fd, const char *s, int len);
 int				ft_printf(const char *fmt, ...);
-char			*ft_strchr(const char *s, int c);
 void			my_set_prec(const char **fmt, t_flag *f, va_list ap);
 void			my_set_width(const char **fmt, t_flag *f, va_list ap);
 int				my_put_c(t_flag *f, va_list ap);
