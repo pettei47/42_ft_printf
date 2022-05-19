@@ -6,7 +6,7 @@
 /*   By: teppei <teppei@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 21:41:31 by tkitagaw          #+#    #+#             */
-/*   Updated: 2022/05/11 09:51:35 by teppei           ###   ########.fr       */
+/*   Updated: 2022/05/19 09:43:12 by teppei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,10 @@ int	my_put_p(t_flag *f, va_list ap)
 	char			*s;
 
 	p = va_arg(ap, unsigned long);
+	if (p == 0 && f->conv != 'p')
+		return (write(1, "0", 1));
 	s = my_itoa_hex(p, f);
 	if (!s)
 		return (0);
-	if ((f->prec == 1 && f->prc_sz == 0))
-	{
-		if (f->minus == 1)
-			write(1, "0x", 2);
-		if (f->zero == 1)
-			i += ft_strlen(s);
-		while (f->width - i++ > 2)
-			write(1, &(f->fill), 1);
-		if (f->minus == 0)
-			write(1, "0x", 2);
-		if (2 > f->width)
-			return (2);
-		return (f->width);
-	}
 	return (my_putptr(s, f, ft_strlen(s), 0));
 }
