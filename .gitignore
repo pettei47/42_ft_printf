@@ -3,5 +3,7 @@
 !Makefile
 !*.c
 !*.h
+!bonus/
 !.gitignore
 main.c
+bonus/main_bonus.c
