@@ -6,7 +6,7 @@
 #    By: teppei <teppei@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/30 17:42:38 by tkitagaw          #+#    #+#              #
-#    Updated: 2022/05/27 18:57:30 by teppei           ###   ########.fr        #
+#    Updated: 2022/05/29 18:48:16 by teppei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
+	make fclean -C bonus
 
 re : fclean all
 
